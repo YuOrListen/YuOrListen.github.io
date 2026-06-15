@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ListenYU.ListenEcho | 音乐首页</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #74b9ff, #87ceeb, #b0e0e6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cascadia Code', sans-serif;
+            animation: homeFade 1s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes homeFade {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .title {
+            font-size: 60px;
+            color: #fff;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin: 20px 0 80px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .enter-btn {
+            padding: 20px 60px;
+            font-size: 26px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #000;
+            background: #ffffff;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transition: 0.4s ease;
+            z-index: 10;
+        }
+
+        .enter-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+            background: #f8feff;
+        }
+
+        .desc {
+            margin-top: 30px;
+            font-size: 20px;
+            color: #fff;
+            opacity: 0.8;
+            z-index: 10;
+        }
+
+        .snow {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: snowFall linear infinite;
+        }
+
+        @keyframes snowFall {
+            0% {
+                transform: translate(0, -10px);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.8;
+            }
+
+            90% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translate(150px, 100vh);
+                opacity: 0;
+            }
+        }
+
+        .user-card {
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(6px);
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.35);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .user-info {
+            text-align: left;
+            position: relative;
+        }
+
+        .nickname {
+            font-size: 26px;
+            color: #fff;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .intro {
+            font-size: 15px;
+            color: #fff;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            color: #222;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: inherit;
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .anim-item {
+            position: absolute;
+            pointer-events: none;
+            font-size: 22px;
+            opacity: 0;
+        }
+
+        @keyframes lampAnim {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-40px) scale(1.3);
+            }
+        }
+
+        @keyframes heartAnim {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotate(0deg);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.2) rotate(15deg);
+            }
+        }
+
+        @keyframes starAnim {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-45px) rotate(180deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="snow" style="width:6px;height:6px;left:2%;animation-duration:8s;"></div>
+    <div class="snow" style="width:8px;height:8px;left:8%;animation-duration:7s;animation-delay:0.5s;"></div>
+    <div class="snow" style="width:5px;height:5px;left:14%;animation-duration:9s;animation-delay:1s;"></div>
+    <div class="snow" style="width:7px;height:7px;left:20%;animation-duration:6s;animation-delay:1.5s;"></div>
+    <div class="snow" style="width:9px;height:9px;left:28%;animation-duration:10s;animation-delay:0.3s;"></div>
+    <div class="snow" style="width:6px;height:6px;left:36%;animation-duration:8s;animation-delay:2s;"></div>
+    <div class="snow" style="width:8px;height:8px;left:44%;animation-duration:7s;animation-delay:0.8s;"></div>
+    <div class="snow" style="width:5px;height:5px;left:52%;animation-duration:9s;animation-delay:1.2s;"></div>
+    <div class="snow" style="width:7px;height:7px;left:60%;animation-duration:6s;animation-delay:2.2s;"></div>
+    <div class="snow" style="width:9px;height:9px;left:68%;animation-duration:11s;animation-delay:0.6s;"></div>
+    <div class="snow" style="width:6px;height:6px;left:76%;animation-duration:8s;animation-delay:1.8s;"></div>
+    <div class="snow" style="width:8px;height:8px;left:84%;animation-duration:7s;animation-delay:2.5s;"></div>
+    <div class="snow" style="width:5px;height:5px;left:92%;animation-duration:10s;animation-delay:1s;"></div>
+
+    <div class="user-card">
+        <img class="avatar" src="picture/头像.jpg">
+        <div class="user-info">
+            <div class="nickname">ListenEcho</div>
+            <div class="intro">Staring At The Sun</div>
+            <div class="btn-group">
+                <button class="action-btn" id="followBtn">关注</button>
+                <button class="action-btn" id="likeBtn">点赞</button>
+                <button class="action-btn" id="collectBtn">收藏</button>
+            </div>
+        </div>
+    </div>
+
+    <h1 class="title">LitYuListen.Echo</h1>
+    <a href="playlist.html" class="enter-btn">Welcome to ListenEcho</a>
+    <p class="desc">K-POP / R&B / M-POP / Western / J-POP</p>
+
+    <script>
+        const followBtn = document.getElementById('followBtn');
+        const likeBtn = document.getElementById('likeBtn');
+        const collectBtn = document.getElementById('collectBtn');
+        const userInfo = document.querySelector('.user-info');
+        function createAnim(el, text, animName, color) {
+            let item = document.createElement('span');
+            item.className = 'anim-item';
+            item.textContent = text;
+            item.style.color = color;
+            item.style.animation = `${animName} 0.8s ease-out forwards`;
+            let rect = el.getBoundingClientRect();
+            let parentRect = userInfo.getBoundingClientRect();
+            item.style.left = `${rect.left - parentRect.left + 10}px`;
+            item.style.bottom = '0px';
+            userInfo.appendChild(item);
+            setTimeout(() => {
+                item.remove();
+            }, 800);
+        }
+
+        followBtn.addEventListener('click', () => {
+            createAnim(followBtn, '💡', 'lampAnim', '#ffe600');
+        });
+
+        likeBtn.addEventListener('click', () => {
+            createAnim(likeBtn, '❤️', 'heartAnim', '#ff4757');
+        });
+
+        collectBtn.addEventListener('click', () => {
+            createAnim(collectBtn, '⭐', 'starAnim', '#ffd32a');
+        });
+    </script>
+</body>
+
+</html>
